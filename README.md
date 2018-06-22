@@ -1,0 +1,1 @@
+"HotsScores README" 
