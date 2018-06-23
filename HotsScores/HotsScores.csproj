@@ -71,6 +71,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Hots\Hero.cs" />
+    <Compile Include="Hots\Player.cs" />
+    <Compile Include="Hots\PlayerScore.cs" />
+    <Compile Include="Hots\Replay.cs" />
+    <Compile Include="Hots\Talent.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
