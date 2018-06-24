@@ -23,6 +23,14 @@ namespace HotsScores
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new MainWindowViewModel(new Hots.HotsApiService());
+        }
+
+        public async void GetReplaysButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as MainWindowViewModel;
+            await vm.LoadHotsDataAsync();
         }
     }
 }

@@ -6,7 +6,55 @@
         xmlns:local="clr-namespace:HotsScores"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="ValidationTemplate">
+                <DockPanel>
+                    <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+                    <AdornedElementPlaceholder/>
+                </DockPanel>
+            </ControlTemplate>
+
+            <Style x:Key="TextBoxError" TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"
+                      Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                                      Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Window.Resources>
+
     <Grid>
-        
+        <Label Content="Start Date:" HorizontalAlignment="Left" Margin="300,150,0,0" Name="startDateLabel" VerticalAlignment="Top" Width="115"/>
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="370,150,0,0" Name="startDatePicker" VerticalAlignment="Top" Width="115" 
+                    DisplayDateStart="1/1/2017" DisplayDateEnd="12/31/2017" DisplayDate="6/5/2017">
+            <DatePicker.SelectedDate>
+                <Binding Path="StartDate" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource"/>
+            </DatePicker.SelectedDate>
+        </DatePicker>
+
+        <Label Content="End Date:" HorizontalAlignment="Left" Margin="300,200,0,0" Name="endDateLabel" VerticalAlignment="Top" Width="115"/>
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="370,200,0,0" Name="endDatePicker" VerticalAlignment="Top" Width="115"
+                    DisplayDateStart="1/1/2017" DisplayDateEnd="12/31/2017" DisplayDate="6/5/2017">
+            <DatePicker.SelectedDate>
+                <Binding Path="EndDate" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource" />
+            </DatePicker.SelectedDate>
+        </DatePicker>
+       
+        <Label Content="Battle Tag:" HorizontalAlignment="Left" Margin="300,250,0,0" Name="battleTagLabel" VerticalAlignment="Top" Width="115"/>
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="370,250,0,0" Name="playerBattleTagText" VerticalAlignment="Top" Width="115"
+             Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Style="{StaticResource TextBoxError}">
+            <TextBox.Text>
+                <Binding Path="PlayerBattleTag" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
+                    <Binding.ValidationRules>
+                        <local:PlayerBattleTagValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button Content="Get Replays" Click="GetReplaysButtonClicked" Height="25" HorizontalAlignment="Center" Margin="0,300,0,0" Name="button1" VerticalAlignment="Top" Width="100" />
     </Grid>
 </Window>
