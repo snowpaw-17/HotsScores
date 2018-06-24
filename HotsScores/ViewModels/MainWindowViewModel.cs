@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using HotsScores.Hots;
 
-namespace HotsScores
+namespace HotsScores.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -140,9 +140,9 @@ namespace HotsScores
                 return "StartDate should be after 2016";
             }
 
-            if (this.EndDate > DateTime.Today)
+            if (this.EndDate.Year > 2017)
             {
-                return "EndDate should be before today's date";
+                return "EndDate should not be after 2017";
             }
 
             if (this.StartDate > this.EndDate)

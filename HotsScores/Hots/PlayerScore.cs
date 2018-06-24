@@ -32,5 +32,15 @@ namespace HotsScores.Hots
 
         [JsonProperty("time_cc_enemy_heroes")]
         public int CrowdControlTime { get; set; }
+
+        public int GetPropertyByName(string propertyName)
+        { 
+            object propertyValue = this.GetType().GetProperty(propertyName).GetValue(this, null);
+            if(propertyValue != null)
+            {
+                return (int)propertyValue;
+            }
+            return 0;
+        }
     }
 }

@@ -24,13 +24,18 @@ namespace HotsScores
         {
             InitializeComponent();
 
-            this.DataContext = new MainWindowViewModel(new Hots.HotsApiService());
+            this.DataContext = new ViewModels.MainWindowViewModel(new Hots.HotsApiService());
         }
 
         public async void GetReplaysButtonClicked(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as MainWindowViewModel;
+            var vm = this.DataContext as ViewModels.MainWindowViewModel;
             await vm.LoadHotsDataAsync();
+
+            ScoresWindow scoresWindow = new ScoresWindow();
+            scoresWindow.DataContext = new ViewModels.ScoresViewModel(vm.Replays, vm.PlayerBattleTag);
+            scoresWindow.Owner = Window.GetWindow(this);
+            scoresWindow.Show();
         }
     }
 }
