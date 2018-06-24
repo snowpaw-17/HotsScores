@@ -121,5 +121,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\HotsScoresLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\HotsScoresBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
